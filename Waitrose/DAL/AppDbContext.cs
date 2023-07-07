@@ -9,10 +9,11 @@ namespace Waitrose.DAL
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<ProductIngredient> ProductIngredients { get; set; }
-        public DbSet<Ingredient> Ingredients { get; set; }
-        public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Class> Classes { get; set; }
+        public DbSet<ClassSection> ClassSections { get; set; }
+        public DbSet<Parent > Parents { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<StudentParent> StudentParents { get; set; }
     }
 }

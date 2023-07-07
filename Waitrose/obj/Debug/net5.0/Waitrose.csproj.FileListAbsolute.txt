@@ -318,3 +318,4 @@ D:\format\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\refint\Waitrose.
 D:\format\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Waitrose.pdb
 D:\format\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Waitrose.genruntimeconfig.cache
 D:\format\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\ref\Waitrose.dll
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Student\AddStudent.cshtml.g.cs

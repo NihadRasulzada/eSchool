@@ -77,7 +77,9 @@ namespace Waitrose.Controllers
             ViewBag.Role = new List<string>
             {
                 Roles.Admin.ToString(),
-                Roles.Member.ToString(),
+                Roles.Student.ToString(),
+                Roles.Teacher.ToString(),
+                Roles.Parent.ToString(),
             };
             return View();
         }
@@ -88,7 +90,9 @@ namespace Waitrose.Controllers
             ViewBag.Role = new List<string>
             {
                 Roles.Admin.ToString(),
-                Roles.Member.ToString(),
+                Roles.Student.ToString(),
+                Roles.Teacher.ToString(),
+                Roles.Parent.ToString(),
             };
             AppEmployee newEmployee = new AppEmployee
             {
@@ -119,9 +123,17 @@ namespace Waitrose.Controllers
             {
                 await _roleManager.CreateAsync(new IdentityRole { Name = Roles.Admin.ToString() });
             }
-            if (!await _roleManager.RoleExistsAsync(Roles.Member.ToString()))
+            if (!await _roleManager.RoleExistsAsync(Roles.Student.ToString()))
             {
-                await _roleManager.CreateAsync(new IdentityRole { Name = Roles.Member.ToString() });
+                await _roleManager.CreateAsync(new IdentityRole { Name = Roles.Student.ToString() });
+            }
+            if (!await _roleManager.RoleExistsAsync(Roles.Teacher.ToString()))
+            {
+                await _roleManager.CreateAsync(new IdentityRole { Name = Roles.Teacher.ToString() });
+            }
+            if (!await _roleManager.RoleExistsAsync(Roles.Parent.ToString()))
+            {
+                await _roleManager.CreateAsync(new IdentityRole { Name = Roles.Parent.ToString() });
             }
         }
         #endregion

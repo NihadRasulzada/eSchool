@@ -39,6 +39,7 @@
     <!-- Responsive.css-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/responsive.css">
 
+    @RenderSection("Css",false);
 </head>
 
 <body class="sidebar-mini fixed">
@@ -79,7 +80,7 @@
                 </ul>
                 <!-- Navbar Right Menu-->
                 <div class="navbar-custom-menu f-right">
-                    
+
 
                     <ul class="top-nav">
                         <!--Notification Menu-->
@@ -213,13 +214,29 @@
             <section class="sidebar" id="sidebar-scroll">
                 <!-- Sidebar Menu-->
                 <ul class="sidebar-menu">
-                    <li class="nav-level">--- Navigation</li>
                     <li class="treeview">
                         <a asp-action="Index" asp-controller="Home" class="waves-effect waves-dark">
                             <i class="icon-speedometer"></i><span> Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-level">--- Employee</li>
+                    <li class="treeview">
+                        <a class="waves-effect waves-dark">
+                            <i class="icon-briefcase"></i>
+                            <span>Student</span>
+                            <i class="icon-arrow-down"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-controller="Student" asp-action="AddStudent" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>Add Student
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Student" asp-action="ViewStudent" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>View Student
+                                </a>
+                            </li>
+                        </ul>
                     <li class="treeview">
                         <a asp-action="Index" asp-controller="User" class="waves-effect waves-dark">
                             <i class="icon-user"></i><span> Employee</span>
@@ -500,6 +517,7 @@
     <script type="text/javascript" src="~/assets/pages/dashboard.js"></script>
     <script type="text/javascript" src="~/assets/pages/elements.js"></script>
     <script src="~/assets/js/menu.min.js"></script>
+
     <script>
         var $window = $(window);
         var nav = $('.fixed-button');

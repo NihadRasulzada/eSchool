@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Waitrose.Helper;
 using Waitrose.Models;
-using Waitrose.ViewModel;
 
 namespace Waitrose.Controllers
 {
@@ -83,7 +82,9 @@ namespace Waitrose.Controllers
             ViewBag.Roles = new List<string>
             {
                 Roles.Admin.ToString(),
-                Roles.Member.ToString()
+                Roles.Student.ToString() ,
+                Roles.Teacher.ToString() ,
+                Roles.Parent.ToString() ,
             };
             return View();
         }
@@ -94,7 +95,9 @@ namespace Waitrose.Controllers
             ViewBag.Roles = new List<string>
             {
                 Roles.Admin.ToString(),
-                Roles.Member.ToString()
+                Roles.Student.ToString(),
+                Roles.Teacher.ToString(),
+                Roles.Parent.ToString(),
             };
             AppEmployee newUser = new AppEmployee
             {
@@ -143,7 +146,9 @@ namespace Waitrose.Controllers
             ViewBag.Roles = new List<string>
             {
                 Roles.Admin.ToString(),
-                Roles.Member.ToString()
+                Roles.Student.ToString(),
+                Roles.Teacher.ToString(),
+                Roles.Parent.ToString(),
             };
             #endregion
 
@@ -175,7 +180,9 @@ namespace Waitrose.Controllers
             ViewBag.Roles = new List<string>
             {
                 Roles.Admin.ToString(),
-                Roles.Member.ToString()
+                Roles.Student.ToString(),
+                 Roles.Teacher.ToString(),
+                  Roles.Parent.ToString()
             };
             #endregion
 

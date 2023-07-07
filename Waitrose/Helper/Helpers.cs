@@ -6,6 +6,8 @@
     enum Roles
     {
         Admin,
-        Member,
+        Student,
+        Teacher,
+        Parent
     }
 }

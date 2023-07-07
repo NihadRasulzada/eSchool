@@ -227,7 +227,7 @@ namespace Waitrose.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.Category", b =>
+            modelBuilder.Entity("Waitrose.Models.Class", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -239,10 +239,44 @@ namespace Waitrose.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Classes");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.Ingredient", b =>
+            modelBuilder.Entity("Waitrose.Models.ClassSection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SectionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("SectionId");
+
+                    b.ToTable("ClassSections");
+                });
+
+            modelBuilder.Entity("Waitrose.Models.Parent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Parents");
+                });
+
+            modelBuilder.Entity("Waitrose.Models.Section", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -252,84 +286,82 @@ namespace Waitrose.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Sections");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.Inventory", b =>
+            modelBuilder.Entity("Waitrose.Models.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Count")
-                        .HasColumnType("float");
-
-                    b.Property<int>("IngredientId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IngredientId")
-                        .IsUnique();
-
-                    b.ToTable("Inventories");
-                });
-
-            modelBuilder.Entity("Waitrose.Models.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
+                    b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Contact")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<string>("DateOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Section")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isMale")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("ClassId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.ProductIngredient", b =>
+            modelBuilder.Entity("Waitrose.Models.StudentParent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("IngredientId")
+                    b.Property<int>("ParentId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Need")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProductId")
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IngredientId");
+                    b.HasIndex("ParentId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("StudentId");
 
-                    b.ToTable("ProductIngredients");
+                    b.ToTable("StudentParents");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -383,62 +415,75 @@ namespace Waitrose.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Waitrose.Models.Inventory", b =>
+            modelBuilder.Entity("Waitrose.Models.ClassSection", b =>
                 {
-                    b.HasOne("Waitrose.Models.Ingredient", "Ingredient")
-                        .WithOne("Inventory")
-                        .HasForeignKey("Waitrose.Models.Inventory", "IngredientId")
+                    b.HasOne("Waitrose.Models.Class", "Class")
+                        .WithMany("ClassSections")
+                        .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Ingredient");
-                });
-
-            modelBuilder.Entity("Waitrose.Models.Product", b =>
-                {
-                    b.HasOne("Waitrose.Models.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("Waitrose.Models.Section", "Section")
+                        .WithMany("ClassSections")
+                        .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("Class");
+
+                    b.Navigation("Section");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.ProductIngredient", b =>
+            modelBuilder.Entity("Waitrose.Models.Student", b =>
                 {
-                    b.HasOne("Waitrose.Models.Ingredient", "Ingredient")
-                        .WithMany("ProductIngredients")
-                        .HasForeignKey("IngredientId")
+                    b.HasOne("Waitrose.Models.Class", "Class")
+                        .WithMany("Students")
+                        .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Waitrose.Models.Product", "Product")
-                        .WithMany("ProductIngredients")
-                        .HasForeignKey("ProductId")
+                    b.Navigation("Class");
+                });
+
+            modelBuilder.Entity("Waitrose.Models.StudentParent", b =>
+                {
+                    b.HasOne("Waitrose.Models.Parent", "Parent")
+                        .WithMany("StudentParents")
+                        .HasForeignKey("ParentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Ingredient");
+                    b.HasOne("Waitrose.Models.Student", "Student")
+                        .WithMany("StudentParents")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Product");
+                    b.Navigation("Parent");
+
+                    b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.Category", b =>
+            modelBuilder.Entity("Waitrose.Models.Class", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("ClassSections");
+
+                    b.Navigation("Students");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.Ingredient", b =>
+            modelBuilder.Entity("Waitrose.Models.Parent", b =>
                 {
-                    b.Navigation("Inventory");
-
-                    b.Navigation("ProductIngredients");
+                    b.Navigation("StudentParents");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.Product", b =>
+            modelBuilder.Entity("Waitrose.Models.Section", b =>
                 {
-                    b.Navigation("ProductIngredients");
+                    b.Navigation("ClassSections");
+                });
+
+            modelBuilder.Entity("Waitrose.Models.Student", b =>
+                {
+                    b.Navigation("StudentParents");
                 });
 #pragma warning restore 612, 618
         }
