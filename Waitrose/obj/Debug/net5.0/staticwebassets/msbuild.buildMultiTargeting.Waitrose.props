@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Waitrose.props" />
+</Project>
