@@ -322,3 +322,6 @@ C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\R
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Section\Index.cshtml.g.cs
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Section\Create.cshtml.g.cs
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Section\Update.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Class\Index.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Class\Create.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Class\Update.cshtml.g.cs
