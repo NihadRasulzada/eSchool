@@ -1,0 +1,63 @@
+﻿@model List<Section>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" style="margin-top:30px">
+                <div class="card">
+                    <div class="card-header" style="display:flex;justify-content:space-between">
+                        <div>
+                            <h5 class="card-header-text">Sections</h5>
+                        </div>
+                        <div>
+                            <a asp-action="Create" class="btn rounded-pill btn-primary text-white" style="margin-right:10px">Create</a>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                            <th style="text-align: right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Section item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                @if (item.isDeactive)
+                                                {
+                                                    <td><span class="btn btn-flat flat-success txt-danger waves-effect waves-light">Deactive</span></td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <span class="btn btn-flat flat-success txt-success waves-effect waves-light">Active</span>
+                                                    </td>
+                                                }
+                                                <td style="text-align:end; gap:normal">
+                                                    <a asp-action="Update" asp-route-id="@item.Id" class="btn rounded-pill btn-primary text-white">Update</a>
+                                                    @if (item.isDeactive)
+                                                    {
+                                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn rounded-pill btn-success text-white" style="width:125px">Activate</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="Activity" asp-route-id="@item.Id" class="btn rounded-pill btn-danger text-white" style="width:125px">DeActivate</a>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Waitrose.DAL;
+using Waitrose.Models;
 
 namespace Waitrose.Controllers
 {
@@ -13,6 +14,12 @@ namespace Waitrose.Controllers
         public IActionResult AddStudent()
         {
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddStudent(Student student)
+        {
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult ViewStudent()
         {

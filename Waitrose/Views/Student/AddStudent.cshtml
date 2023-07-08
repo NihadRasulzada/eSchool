@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-block">
-                        <form class="row" method="post">
+                        <form class="row" method="post" enctype="multipart/form-data">
                             <div class="col-lg-6">
                                 <div class="col-md-12">
                                     <label asp-for="FullName" class="form-control-label">FullName</label>
@@ -58,7 +58,7 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
                                         <label asp-for="isMale" class="form-control-label">Gender</label>
-                                        <select class="form-control" name="isMale">
+                                        <select asp-for=isMale class="form-control" name="isMaleId">
                                             <option>Male</option>
                                             <option>Female</option>
                                         </select>
@@ -70,7 +70,7 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
                                         <label asp-for="Class" class="form-control-label">Class</label>
-                                        <select class="form-control" name="Class">
+                                        <select asp-for=Class class="form-control" name="classId">
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -89,7 +89,7 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
                                         <label asp-for="Section" class="form-control-label">Section</label>
-                                        <select class="form-control" name="Section">
+                                        <select asp-for=Section class="form-control" name="sectionId">
                                             <option>A</option>
                                             <option>B</option>
                                         </select>
@@ -98,8 +98,8 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="form-control-label">Parents</label>
-                                        <select multiple="" class="form-control multiple-select" name="parentsId[]">
+                                        <label asp-for="StudentParents" class="form-control-label">Parents</label>
+                                        <select asp-for=StudentParents multiple="" class="form-control multiple-select" name="parentsId[]">
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -107,12 +107,12 @@
                                             <option>5</option>
                                         </select>
                                     </div>
-                                    <span asp-validation-for="Section" style="color:red;"></span>
+                                    <span asp-validation-for="StudentParents" style="color:red;"></span>
                                 </div>
                                 <div class="col-md-12">
                                     <label asp-for="Photo" class="form-control-label">Photo</label>
                                     <div class="input-group">
-                                        <input asp-for="Photo" class="form-control" placeholder="Photo">
+                                        <input asp-for="Photo" accept="image/*" class="form-control" placeholder="Photo">
                                         <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                                     </div>
                                     <span asp-validation-for="Photo" style="color:red;"></span>
@@ -121,7 +121,6 @@
                                     <button type="submit" class="btn btn-primary">Send</button>
                                 </div>
                             </div>
-                            
                         </form>
                     </div>
                 </div>
