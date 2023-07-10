@@ -23,7 +23,7 @@ namespace Waitrose
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddIdentity<AppEmployee, IdentityRole>(IdentityOptions =>
+            services.AddIdentity<AppUser, IdentityRole>(IdentityOptions =>
             {
                 IdentityOptions.User.RequireUniqueEmail = true;
                 IdentityOptions.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
@@ -33,6 +33,7 @@ namespace Waitrose
                 IdentityOptions.Lockout.AllowedForNewUsers = true;
                 IdentityOptions.Lockout.MaxFailedAccessAttempts = 5;
                 IdentityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
             services.AddDbContext<AppDbContext>(option =>
             {

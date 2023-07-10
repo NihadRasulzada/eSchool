@@ -225,11 +225,6 @@
                         </a>
                     </li>
                     <li class="treeview">
-                        <a asp-action="Index" asp-controller="Section" class="waves-effect waves-dark">
-                            <i class="icon-user"></i><span>Section</span>
-                        </a>
-                    </li>
-                    <li class="treeview">
                         <a class="waves-effect waves-dark">
                             <i class="icon-briefcase"></i>
                             <span>Student</span>
@@ -244,6 +239,25 @@
                             <li>
                                 <a asp-controller="Student" asp-action="ViewStudent" class="waves-effect waves-dark">
                                     <i class="icon-arrow-right"></i>View Student
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a class="waves-effect waves-dark">
+                            <i class="icon-briefcase"></i>
+                            <span>Parent</span>
+                            <i class="icon-arrow-down"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-controller="Parent" asp-action="AddParents" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>Add Parent
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Parent" asp-action="ViewParents" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>View Parent
                                 </a>
                             </li>
                         </ul>

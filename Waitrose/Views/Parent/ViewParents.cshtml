@@ -1,0 +1,72 @@
+﻿@model List<Parent>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" style="margin-top:30px">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-header-text">List of Studens</h5>
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>FullName</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Contact</th>
+                                            <th>Child</th>
+                                            <th>Option</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Parent item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.FullName</td>
+                                                <td>@item.EmailAddress</td>
+                                                @if (item.isMale)
+                                                {
+                                                    <td>Male</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Female</td>
+                                                }
+                                                <td>@item.PhoneNumber</td>
+                                                <td>
+                                                    @foreach (StudentParent studentParent in item.StudentParents)
+                                                    {
+                                                        <span>@studentParent.Student.FullName</span>
+                                                        
+                                                    }
+                                                </td>
+
+                                                <td>
+                                                    <!-- Example single danger button -->
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Action
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a asp-action="ParentProfile" asp-route-id="@item.Id" class="dropdown-item">View</a>
+                                                            <a class="dropdown-item" href="#">Send Mail</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item" href="#">Banned Student</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

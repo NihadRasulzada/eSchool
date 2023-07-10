@@ -13,13 +13,13 @@ namespace Waitrose.Controllers
     {
 
         #region AccountController
-        private readonly UserManager<AppEmployee> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly SignInManager<AppEmployee> _signInManager;
+        private readonly SignInManager<AppUser> _signInManager;
         public AccountController(
-            UserManager<AppEmployee> userManager,
+            UserManager<AppUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            SignInManager<AppEmployee> signInManager)
+            SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -36,7 +36,7 @@ namespace Waitrose.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            AppEmployee appEmployee = await _userManager.FindByNameAsync(loginVM.Username);
+            AppUser appEmployee = await _userManager.FindByNameAsync(loginVM.Username);
             if (appEmployee == null)
             {
                 ModelState.AddModelError("", "Username or Password is wrong");
@@ -94,10 +94,8 @@ namespace Waitrose.Controllers
                 Roles.Teacher.ToString(),
                 Roles.Parent.ToString(),
             };
-            AppEmployee newEmployee = new AppEmployee
+            AppUser newEmployee = new AppUser
             {
-                Name = registerVM.Name,
-                Surname = registerVM.Surname,
                 UserName = registerVM.Username,
                 Email = registerVM.Email
             };

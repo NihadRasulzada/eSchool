@@ -150,7 +150,7 @@ namespace Waitrose.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.AppEmployee", b =>
+            modelBuilder.Entity("Waitrose.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -178,9 +178,6 @@ namespace Waitrose.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -198,13 +195,7 @@ namespace Waitrose.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Salary")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -245,28 +236,6 @@ namespace Waitrose.Migrations
                     b.ToTable("Classes");
                 });
 
-            modelBuilder.Entity("Waitrose.Models.ClassSection", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClassId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SectionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
-
-                    b.HasIndex("SectionId");
-
-                    b.ToTable("ClassSections");
-                });
-
             modelBuilder.Entity("Waitrose.Models.Parent", b =>
                 {
                     b.Property<int>("Id")
@@ -274,28 +243,33 @@ namespace Waitrose.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasKey("Id");
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Parents");
-                });
+                    b.Property<string>("DateOfBirth")
+                        .HasColumnType("nvarchar(max)");
 
-            modelBuilder.Entity("Waitrose.Models.Section", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("EmailAddress")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isDeactive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("isMale")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Sections");
+                    b.ToTable("Parents");
                 });
 
             modelBuilder.Entity("Waitrose.Models.Student", b =>
@@ -306,37 +280,24 @@ namespace Waitrose.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ClassId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Contact")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("DateOfBirth")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Section")
-                        .IsRequired()
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isMale")
@@ -382,7 +343,7 @@ namespace Waitrose.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Waitrose.Models.AppEmployee", null)
+                    b.HasOne("Waitrose.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -391,7 +352,7 @@ namespace Waitrose.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Waitrose.Models.AppEmployee", null)
+                    b.HasOne("Waitrose.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -406,7 +367,7 @@ namespace Waitrose.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Waitrose.Models.AppEmployee", null)
+                    b.HasOne("Waitrose.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -415,30 +376,11 @@ namespace Waitrose.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Waitrose.Models.AppEmployee", null)
+                    b.HasOne("Waitrose.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Waitrose.Models.ClassSection", b =>
-                {
-                    b.HasOne("Waitrose.Models.Class", "Class")
-                        .WithMany("ClassSections")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Waitrose.Models.Section", "Section")
-                        .WithMany("ClassSections")
-                        .HasForeignKey("SectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Class");
-
-                    b.Navigation("Section");
                 });
 
             modelBuilder.Entity("Waitrose.Models.Student", b =>
@@ -473,19 +415,12 @@ namespace Waitrose.Migrations
 
             modelBuilder.Entity("Waitrose.Models.Class", b =>
                 {
-                    b.Navigation("ClassSections");
-
                     b.Navigation("Students");
                 });
 
             modelBuilder.Entity("Waitrose.Models.Parent", b =>
                 {
                     b.Navigation("StudentParents");
-                });
-
-            modelBuilder.Entity("Waitrose.Models.Section", b =>
-                {
-                    b.Navigation("ClassSections");
                 });
 
             modelBuilder.Entity("Waitrose.Models.Student", b =>

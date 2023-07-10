@@ -17,36 +17,19 @@ namespace Waitrose.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Class> classes = await _db.Classes
-                .Include(x => x.ClassSections)
-                .ThenInclude(x => x.Section)
-                .ToListAsync();
+            List<Class> classes = await _db.Classes.ToListAsync();
             return View(classes);
         }
 
         #region Create
         public async Task<IActionResult> Create()
         {
-            ViewBag.Sections = await _db.Sections.Where(x => !x.isDeactive).ToListAsync();
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Class @class, int[] sectionsId)
         {
-            ViewBag.Sections = await _db.Sections.Where(x => !x.isDeactive).ToListAsync();
-
-            List<ClassSection> classSections = new List<ClassSection>();
-            foreach (int item in sectionsId)
-            {
-                ClassSection classSection = new ClassSection
-                {
-                    SectionId = item,
-                };
-                classSections.Add(classSection);
-            }
-            @class.ClassSections = classSections;
-
             await _db.Classes.AddAsync(@class);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -61,48 +44,31 @@ namespace Waitrose.Controllers
                 return BadRequest();
             }
             Class dbClass = await _db.Classes
-                .Include(x => x.ClassSections)
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (dbClass == null)
             {
                 return NotFound();
             }
-            ViewBag.Sections = await _db.Sections
-                .Where(x => !x.isDeactive)
-                .ToListAsync();
             return View(dbClass);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int? id, Class @class, int[] sectionsId)
+        public async Task<IActionResult> Update(int? id, Class @class)
         {
             if (id == null)
             {
                 return BadRequest();
             }
             Class dbClass = await _db.Classes
-                .Include(x => x.ClassSections)
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (dbClass == null)
             {
                 return NotFound();
             }
-            ViewBag.Sections = await _db.Sections
-                .Where(x => !x.isDeactive)
-                .ToListAsync();
 
             dbClass.Name = @class.Name;
 
-            List<ClassSection> classSections = new List<ClassSection>();
-            foreach (int item in sectionsId)
-            {
-                ClassSection classSection = new ClassSection
-                {
-                    SectionId = item,
-                };
-                classSections.Add(classSection);
-            }
-            dbClass.ClassSections = classSections;
+            
 
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");

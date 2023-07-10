@@ -1,0 +1,141 @@
+﻿@model ParentProfileVM
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="user-block-2">
+                        <h5>@Model.FullName</h5>
+                        <h6>Student</h6>
+                    </div>
+                    <div class="card-block">
+                        <div class="user-block-2-activities">
+                            <div class="user-block-2-active">
+                                <i class="icofont icofont-clock-time"></i> Email
+                                <label>@Model.Email</label>
+                            </div>
+                        </div>
+                        <div class="user-block-2-activities">
+                            <div class="user-block-2-active">
+                                <i class="icofont icofont-users"></i> Contact
+                                <label>@Model.PhoneNumber</label>
+                            </div>
+                        </div>
+                        <div class="user-block-2-activities">
+                            <div class="user-block-2-active">
+                                <i class="icofont icofont-ui-user"></i> DOB
+                                <label>@Model.DateofBirth</label>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary waves-effect waves-light text-uppercase">
+                                Suspend @Model.FullName
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card">
+                    <ul class="nav nav-tabs  tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">Home<a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#profile1" role="tab">Information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#messages1" role="tab">Change Password</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#settings1" role="tab">Settings</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content tabs">
+                        <div class="tab-pane active" id="home1" role="tabpanel">
+                            @*<p>
+                            1. This is Photoshop's version of Lorem IpThis is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                            Aenean mas Cum sociis natoque penatibus et magnis dis.....
+                            </p>*@
+                        </div>
+                        <div class="tab-pane" id="profile1" role="tabpanel">
+                            <div class="card-block">
+                                <div class="user-block-2-activities">
+                                    <div class="user-block-2-active">
+                                        <i class="icofont icofont-clock-time"></i> Username
+                                        <label>@Model.UserName</label>
+                                    </div>
+                                </div>
+                                <div class="user-block-2-activities">
+                                    <div class="user-block-2-active">
+                                        <i class="icofont icofont-ui-user"></i> Gender
+                                        @if (Model.isMale)
+                                        {
+                                            <label>Male</label>
+                                        }
+                                        else
+                                        {
+                                            <label>Female</label>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="user-block-2-activities">
+                                    <div class="user-block-2-active">
+                                        <i class="icofont icofont-clock-time"></i> Childs
+                                        <label>
+                                            @foreach (string item in Model.StudentNames)
+                                            {
+                                                <span>@item</span>
+                                            }
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="user-block-2-activities">
+                                    <div class="user-block-2-active">
+                                        <i class="icofont icofont-users"></i> Location
+                                        <label>@Model.Address</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="messages1" role="tabpanel">
+                            <div class="card-block">
+                                <form method="post">
+                                    <div class="form-group row">
+                                        <label asp-for=ResendPassword class="col-xs-2 col-form-label form-control-label">ResendPassword</label>
+                                        <div class="col-sm-10">
+                                            <input asp-for=ResendPassword class="form-control">
+                                        </div>
+                                        <span asp-validation-for="ResendPassword" style="color:red;margin-left:12px"></span>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label asp-for="Password" class="col-xs-2 col-form-label form-control-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input asp-for=Password class="form-control">
+                                        </div>
+                                        <span asp-validation-for="ResendPassword" style="color:red;margin-left:12px"></span>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label asp-for=CheckPassword class="col-xs-2 col-form-label form-control-label">CheckPassword</label>
+                                        <div class="col-sm-10">
+                                            <input asp-for=CheckPassword class="form-control">
+                                        </div>
+                                        <span asp-validation-for="ResendPassword" style="color:red;margin-left:12px"></span>
+                                    </div>
+                                    <button type="button" class="btn btn-danger">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="settings1" role="tabpanel">
+                            <p>4.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

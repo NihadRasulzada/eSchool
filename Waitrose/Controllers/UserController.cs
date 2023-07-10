@@ -12,12 +12,12 @@ namespace Waitrose.Controllers
     public class UserController : Controller
     {
         #region Constructor
-        private readonly UserManager<AppEmployee> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly SignInManager<AppEmployee> _signInManager;
-        public UserController(UserManager<AppEmployee> userManager,
+        private readonly SignInManager<AppUser> _signInManager;
+        public UserController(UserManager<AppUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            SignInManager<AppEmployee> signInManager)
+            SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -29,19 +29,16 @@ namespace Waitrose.Controllers
         #region Index
         public async Task<IActionResult> Index()
         {
-            List<AppEmployee> dbUsers = await _userManager.Users.ToListAsync();
+            List<AppUser> dbUsers = await _userManager.Users.ToListAsync();
             List<UserVM> usersVM = new List<UserVM>();
-            foreach (AppEmployee dbUser in dbUsers)
+            foreach (AppUser dbUser in dbUsers)
             {
                 UserVM userVM = new UserVM
                 {
                     Id = dbUser.Id,
-                    Name = dbUser.Name,
-                    Surname = dbUser.Surname,
                     Email = dbUser.Email,
                     Username = dbUser.UserName,
                     IsDeactive = dbUser.IsDeactive,
-                    Salary = dbUser.Salary,
                     Role = (await _userManager.GetRolesAsync(dbUser))[0],
                 };
                 usersVM.Add(userVM);
@@ -57,7 +54,7 @@ namespace Waitrose.Controllers
             {
                 return NotFound();
             }
-            AppEmployee dbUser = await _userManager.FindByIdAsync(id);
+            AppUser dbUser = await _userManager.FindByIdAsync(id);
             if (dbUser == null)
             {
                 return BadRequest();
@@ -99,13 +96,10 @@ namespace Waitrose.Controllers
                 Roles.Teacher.ToString(),
                 Roles.Parent.ToString(),
             };
-            AppEmployee newUser = new AppEmployee
+            AppUser newUser = new AppUser
             {
                 UserName = createVM.Username,
                 Email = createVM.Email,
-                Name = createVM.Name,
-                Salary = createVM.Salary,
-                Surname = createVM.Surname
             };
             IdentityResult identityResult = await _userManager.CreateAsync(newUser, createVM.Password);
             if (!identityResult.Succeeded)
@@ -129,18 +123,15 @@ namespace Waitrose.Controllers
             {
                 return NotFound();
             }
-            AppEmployee dbAppEmployee = await _userManager.FindByIdAsync(id);
+            AppUser dbAppEmployee = await _userManager.FindByIdAsync(id);
             if (dbAppEmployee == null)
             {
                 return BadRequest();
             }
             UpdateVM dbUpdateVM = new UpdateVM
             {
-                Name = dbAppEmployee.Name,
                 Username = dbAppEmployee.UserName,
                 Email = dbAppEmployee.Email,
-                Surname = dbAppEmployee.Surname,
-                Salary = dbAppEmployee.Salary,
                 Role = (await _userManager.GetRolesAsync(dbAppEmployee))[0],
             };
             ViewBag.Roles = new List<string>
@@ -163,18 +154,15 @@ namespace Waitrose.Controllers
             {
                 return NotFound();
             }
-            AppEmployee dbAppEmployee = await _userManager.FindByIdAsync(id);
+            AppUser dbAppEmployee = await _userManager.FindByIdAsync(id);
             if (dbAppEmployee == null)
             {
                 return BadRequest();
             }
             UpdateVM dbUpdateVM = new UpdateVM
             {
-                Name = dbAppEmployee.Name,
                 Username = dbAppEmployee.UserName,
                 Email = dbAppEmployee.Email,
-                Surname = dbAppEmployee.Surname,
-                Salary = dbAppEmployee.Salary,
                 Role = (await _userManager.GetRolesAsync(dbAppEmployee))[0],
             };
             ViewBag.Roles = new List<string>
@@ -186,11 +174,8 @@ namespace Waitrose.Controllers
             };
             #endregion
 
-            dbAppEmployee.Name = updateVM.Name;
             dbAppEmployee.UserName = updateVM.Username;
-            dbAppEmployee.Surname = updateVM.Surname;
             dbAppEmployee.Email = updateVM.Email;
-            dbAppEmployee.Salary = updateVM.Salary;
 
             if (dbUpdateVM.Role != role)
             {
@@ -230,7 +215,7 @@ namespace Waitrose.Controllers
             {
                 return NotFound();
             }
-            AppEmployee dbAppEmployee = await _userManager.FindByIdAsync(id);
+            AppUser dbAppEmployee = await _userManager.FindByIdAsync(id);
             if (dbAppEmployee == null)
             {
                 return BadRequest();
@@ -248,7 +233,7 @@ namespace Waitrose.Controllers
             {
                 return NotFound();
             }
-            AppEmployee dbAppEmployee = await _userManager.FindByIdAsync(id);
+            AppUser dbAppEmployee = await _userManager.FindByIdAsync(id);
             if (dbAppEmployee == null)
             {
                 return BadRequest();

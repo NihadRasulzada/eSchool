@@ -1,4 +1,4 @@
-﻿@model Student
+﻿@model AddStudentVM
 <div class="content-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -13,7 +13,7 @@
                                         <input asp-for="FullName" class="form-control" placeholder="FullName">
                                         <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                                     </div>
-                                    <span asp-validation-for="FullName" style="color:red;"></span>
+                                    <span asp-validation-for="FullName" style="color:red; margin-left:12px"></span>
                                 </div>
                                 <div class="col-md-12">
                                     <label asp-for="Username" class="form-control-label">Username</label>
@@ -21,7 +21,7 @@
                                         <input asp-for=Username class="form-control" placeholder="Username">
                                         <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                                     </div>
-                                    <span asp-validation-for="Username" style="color:red;"></span>
+                                    <span asp-validation-for="Username" style="color:red;margin-left:12px"></span>
                                 </div>
                                 <div class="col-md-12">
                                     <label asp-for="Email" class="form-control-label">Email address</label>
@@ -29,14 +29,30 @@
                                         <input asp-for="Email" class="form-control" placeholder="Email">
                                         <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                                     </div>
-                                    <span asp-validation-for="Email" style="color:red;"></span>
+                                    <span asp-validation-for="Email" style="color:red;margin-left:12px"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label asp-for="Password" class="form-control-label">Password</label>
+                                    <div class="input-group">
+                                        <input asp-for="Password" class="form-control" placeholder="Password">
+                                        <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                    </div>
+                                    <span asp-validation-for="Password" style="color:red;margin-left:12px"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label asp-for="CheckPassword" class="form-control-label">CheckPassword</label>
+                                    <div class="input-group">
+                                        <input asp-for="CheckPassword" class="form-control" placeholder="CheckPassword">
+                                        <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                    </div>
+                                    <span asp-validation-for="CheckPassword" style="color:red;margin-left:12px"></span>
                                 </div>
                                 <div class="col-md-12">
                                     <label asp-for="DateOfBirth" class="form-control-label">DateOfBirth</label>
                                     <div class="input-group">
                                         <input asp-for="DateOfBirth" class="form-control" placeholder="DateOfBirth">
                                     </div>
-                                    <span asp-validation-for="DateOfBirth" style="color:red;"></span>
+                                    <span asp-validation-for="DateOfBirth" style="color:red;margin-left:12px"></span>
                                 </div>
                                 <div class="col-md-12">
                                     <label asp-for="Address" class="form-control-label">Address</label>
@@ -44,78 +60,49 @@
                                         <input asp-for="Address" class="form-control" placeholder="Address">
                                         <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                                     </div>
-                                    <span asp-validation-for="Address" style="color:red;"></span>
+                                    <span asp-validation-for="Address" style="color:red;margin-left:12px"></span>
                                 </div>
                                 <div class="col-md-12">
-                                    <label asp-for="Contact" class="form-control-label">Contact</label>
+                                    <label asp-for="PhoneNumber" class="form-control-label">Contact</label>
                                     <div class="input-group">
-                                        <input asp-for="Contact" class="form-control" placeholder="Contact">
+                                        <input asp-for="PhoneNumber" class="form-control" placeholder="Contact">
                                         <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                                     </div>
-                                    <span asp-validation-for="Contact" style="color:red;"></span>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="input-group">
-                                        <label asp-for="isMale" class="form-control-label">Gender</label>
-                                        <select asp-for=isMale class="form-control" name="isMaleId">
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                        </select>
-                                    </div>
-                                    <span asp-validation-for="isMale" style="color:red;"></span>
+                                    <span asp-validation-for="PhoneNumber" style="color:red;margin-left:12px"></span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="col-md-12">
                                     <div class="input-group">
-                                        <label asp-for="Class" class="form-control-label">Class</label>
-                                        <select asp-for=Class class="form-control" name="classId">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>11</option>
+                                        <label asp-for="isMale" class="form-control-label">Gender</label>
+                                        <select asp-for=isMale class="form-control" name="isMaleId">
+                                            <option value="1">Male</option>
+                                            <option value="0">Female</option>
                                         </select>
                                     </div>
-                                    <span asp-validation-for="Class" style="color:red;"></span>
+                                    <span asp-validation-for="isMale" style="color:red;margin-left:12px"></span>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input-group">
-                                        <label asp-for="Section" class="form-control-label">Section</label>
-                                        <select asp-for=Section class="form-control" name="sectionId">
-                                            <option>A</option>
-                                            <option>B</option>
+                                        <label class="form-control-label">Class</label>
+                                        <select class="form-control" name="classId" id="classId">
+                                            @foreach (Class item in ViewBag.Classes)
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
                                         </select>
                                     </div>
-                                    <span asp-validation-for="Section" style="color:red;"></span>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label asp-for="StudentParents" class="form-control-label">Parents</label>
-                                        <select asp-for=StudentParents multiple="" class="form-control multiple-select" name="parentsId[]">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                        <label class="form-control-label">Parents</label>
+                                        <select multiple="" class="form-control multiple-select" name="parentsId[]">
+                                            @foreach (Parent item in ViewBag.Parents)
+                                            {
+                                                <option value="@item.Id">@item.FullName</option>
+                                            }
                                         </select>
                                     </div>
-                                    <span asp-validation-for="StudentParents" style="color:red;"></span>
-                                </div>
-                                <div class="col-md-12">
-                                    <label asp-for="Photo" class="form-control-label">Photo</label>
-                                    <div class="input-group">
-                                        <input asp-for="Photo" accept="image/*" class="form-control" placeholder="Photo">
-                                        <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                    </div>
-                                    <span asp-validation-for="Photo" style="color:red;"></span>
                                 </div>
                                 <div class="col-md-12" style="margin-top:10px">
                                     <button type="submit" class="btn btn-primary">Send</button>

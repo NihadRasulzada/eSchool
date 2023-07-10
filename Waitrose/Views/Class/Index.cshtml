@@ -19,7 +19,6 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Sections</th>
                                             <th>Status</th>
                                             <th style="text-align: right">Actions</th>
                                         </tr>
@@ -29,12 +28,6 @@
                                         {
                                             <tr>
                                                 <td>@item.Name</td>
-                                                <td>
-                                                    @foreach (ClassSection classSection in item.ClassSections)
-                                                    {
-                                                        @classSection.Section.Name
-                                                    }
-                                                </td>
                                                 @if (item.isDeactive)
                                                 {
                                                     <td><span class="btn btn-flat flat-success txt-danger waves-effect waves-light">Deactive</span></td>

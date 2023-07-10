@@ -8,6 +8,7 @@
         Admin,
         Student,
         Teacher,
+        Member,
         Parent
     }
 }
