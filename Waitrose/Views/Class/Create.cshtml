@@ -30,5 +30,21 @@
 </div>
 
 @section Scripts{
+    
     <partial name="_ValidationScriptsPartial" />
+    @*<script>
+        $(document).on("change", "#subjectId", function () {
+            $.ajax({
+                url: "/Class/LoadTeacher/",
+                type: "get",
+                data: {
+                    "subjectId": $("#subjectId").val()
+                },
+                success: function (res) {
+                    $("#teacherId").empty()
+                    $("#teacherId").append(res)
+                }
+            });
+        });
+    </script>*@
 }

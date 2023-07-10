@@ -1,0 +1,69 @@
+﻿@model List<Class>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" style="margin-top:30px">
+                <div class="card">
+                    <div class="card-header" style="display:flex;justify-content:space-between">
+                        <div>
+                            <h5 class="card-header-text">List of Classes</h5>
+                        </div>
+                        <div>
+                            <a asp-controller="Class" asp-action="Create" class="btn rounded-pill btn-primary text-white" style="margin-right:10px">Add Class</a>
+
+                            <a asp-controller="Class" asp-action="AsignClassTeacher" class="btn rounded-pill btn-success text-white" style="margin-right:10px">Asign Class Teachers</a>
+                        </div>
+
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ClassName</th>
+                                            <th>ClassTeacher</th>
+                                            <th>Option</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Class item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>
+                                                    @if(item.TeacherClasses == null)
+                                                    {
+                                                        <span>N/A</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        @foreach (TeacherClass teacherClass in item.TeacherClasses)
+                                                        {
+                                                            <span>@teacherClass.Teacher.FullName</span>
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <!-- Example single danger button -->
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Action
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a asp-action="ClassProfile" asp-route-id="@item.Id" class="dropdown-item">View Class</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

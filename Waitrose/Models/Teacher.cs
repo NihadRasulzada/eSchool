@@ -14,5 +14,8 @@ namespace Waitrose.Models
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public bool isMale { get; set; }
+        public Subject Subject { get; set; }
+        public int SubjectId { get; set; }
+        public List<TeacherClass> TeacherClasses { get; set; }
     }
 }

@@ -1,0 +1,93 @@
+﻿@model Class
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-7" style="margin-top:30px">
+                <div class="card">
+                    <div class="card-header" style="display:flex;justify-content:space-between">
+                        <h5 class="card-header-text">Asign Class Teacher</h5>
+                        <div asp-validation-summary="ModelOnly" style="color:red; margin-left:10px"></div>
+                    </div>
+                    <div class="card-block">
+                        <form class="row" method="post" enctype="multipart/form-data">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <label class="form-control-label">Classes</label>
+                                    <select class="form-control" name="classId" id="classId">
+                                        <option>NULL</option>
+                                        @foreach (Class item in ViewBag.Classes)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <label class="form-control-label">Subject</label>
+                                    <select class="form-control" name="subjectId" id="subjectId">
+                                        <option value="0">NULL</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <label class="form-control-label">Teacher</label>
+                                    <select class="form-control" name="teacherId" id="teacherId">
+                                        <option value="0">NULL</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).on("change", "#classId", function () {
+            $.ajax({
+                url: "/Class/LoadSubject/",
+                type: "get",
+                data: {
+                    "classId": $("#classId").val()
+                },
+                success: function (res) {
+                    $("#subjectId").empty()
+                    $("#subjectId").append(res)
+                    $.ajax({
+                        url: "/Class/LoadTeacher/",
+                        type: "get",
+                        data: {
+                            "subjectId": $("#subjectId").val()
+                        },
+                        success: function (res) {
+                            $("#teacherId").empty()
+                            $("#teacherId").append(res)
+                        }
+                    });
+                }
+            });
+        });
+        $(document).on("change", "#subjectId", function () {
+            $.ajax({
+                url: "/Class/LoadTeacher/",
+                type: "get",
+                data: {
+                    "subjectId": $("#subjectId").val()
+                },
+                success: function (res) {
+                    $("#teacherId").empty()
+                    $("#teacherId").append(res)
+                }
+            });
+        });
+    </script>
+}

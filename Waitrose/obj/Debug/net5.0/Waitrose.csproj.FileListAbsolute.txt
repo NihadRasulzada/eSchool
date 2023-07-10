@@ -327,3 +327,13 @@ C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\R
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Student\StudentProfile.cshtml.g.cs
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Parent\ViewParents.cshtml.g.cs
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Parent\ParentProfile.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Teacher\AddTeacher.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Teacher\ViewTeacher.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Classroom\ManageClass.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Classroom\ClassProfile.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\ManageSubject\Index.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\ManageSubject\Update.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\ManageSubject\Create.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Class\AsignClassTeacher.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Shared\_LoadSubjectPartial.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Shared\_LoadTeacherPartial.cshtml.g.cs

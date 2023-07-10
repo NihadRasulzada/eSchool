@@ -246,6 +246,25 @@
                     <li class="treeview">
                         <a class="waves-effect waves-dark">
                             <i class="icon-briefcase"></i>
+                            <span>Teacher</span>
+                            <i class="icon-arrow-down"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-controller="Teacher" asp-action="AddTeacher" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>Add Teacher
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Teacher" asp-action="ViewTeacher" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>View Teacher
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a class="waves-effect waves-dark">
+                            <i class="icon-briefcase"></i>
                             <span>Parent</span>
                             <i class="icon-arrow-down"></i>
                         </a>
@@ -258,6 +277,30 @@
                             <li>
                                 <a asp-controller="Parent" asp-action="ViewParents" class="waves-effect waves-dark">
                                     <i class="icon-arrow-right"></i>View Parent
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a class="waves-effect waves-dark">
+                            <i class="icon-briefcase"></i>
+                            <span>Classroom</span>
+                            <i class="icon-arrow-down"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-controller="Classroom" asp-action="ManageClass" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>Manage Class
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="ManageSubject" asp-action="Index" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>Manage Subjects
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Classroom" asp-action="ManageSyllabus" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>Manage Syllabus
                                 </a>
                             </li>
                         </ul>

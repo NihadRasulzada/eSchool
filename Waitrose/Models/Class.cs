@@ -10,5 +10,6 @@ namespace Waitrose.Models
         public string Name { get; set; }
         public bool isDeactive { get; set; }
         public List<Student> Students { get; set; }
+        public List<TeacherClass> TeacherClasses { get; set; }
     }
 }

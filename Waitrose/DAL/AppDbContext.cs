@@ -13,5 +13,9 @@ namespace Waitrose.DAL
         public DbSet<Class> Classes { get; set; }
         public DbSet<Parent > Parents { get; set; }
         public DbSet<StudentParent> StudentParents { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<TeacherClass> TeacherClasses { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        
     }
 }
