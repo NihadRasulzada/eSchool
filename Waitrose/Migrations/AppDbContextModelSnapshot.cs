@@ -236,6 +236,51 @@ namespace Waitrose.Migrations
                     b.ToTable("Classes");
                 });
 
+            modelBuilder.Entity("Waitrose.Models.Exam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Exams");
+                });
+
+            modelBuilder.Entity("Waitrose.Models.Mark", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExamId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentMark")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("ExamId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("Marks");
+                });
+
             modelBuilder.Entity("Waitrose.Models.Parent", b =>
                 {
                     b.Property<int>("Id")
@@ -340,6 +385,7 @@ namespace Waitrose.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -458,6 +504,33 @@ namespace Waitrose.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Waitrose.Models.Mark", b =>
+                {
+                    b.HasOne("Waitrose.Models.Class", "Class")
+                        .WithMany("Marks")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Waitrose.Models.Exam", "Exam")
+                        .WithMany("Marks")
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Waitrose.Models.Subject", "Subject")
+                        .WithMany("Marks")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Exam");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Waitrose.Models.Student", b =>
                 {
                     b.HasOne("Waitrose.Models.Class", "Class")
@@ -520,9 +593,16 @@ namespace Waitrose.Migrations
 
             modelBuilder.Entity("Waitrose.Models.Class", b =>
                 {
+                    b.Navigation("Marks");
+
                     b.Navigation("Students");
 
                     b.Navigation("TeacherClasses");
+                });
+
+            modelBuilder.Entity("Waitrose.Models.Exam", b =>
+                {
+                    b.Navigation("Marks");
                 });
 
             modelBuilder.Entity("Waitrose.Models.Parent", b =>
@@ -537,6 +617,8 @@ namespace Waitrose.Migrations
 
             modelBuilder.Entity("Waitrose.Models.Subject", b =>
                 {
+                    b.Navigation("Marks");
+
                     b.Navigation("Teachers");
                 });
 

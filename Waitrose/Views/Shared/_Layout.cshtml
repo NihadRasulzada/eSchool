@@ -306,6 +306,25 @@
                         </ul>
                     </li>
                     <li class="treeview">
+                        <a class="waves-effect waves-dark">
+                            <i class="icon-briefcase"></i>
+                            <span>Exam section</span>
+                            <i class="icon-arrow-down"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-controller="ManageExam" asp-action="Index" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>Manage Exam
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="EntryMarks" asp-action="Index" class="waves-effect waves-dark">
+                                    <i class="icon-arrow-right"></i>Entry Marks
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
                         <a asp-action="Index" asp-controller="User" class="waves-effect waves-dark">
                             <i class="icon-user"></i><span> Employee</span>
                         </a>

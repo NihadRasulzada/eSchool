@@ -66,7 +66,7 @@ namespace Waitrose.Controllers
         }
         #endregion
 
-        public async Task<IActionResult> ViewTeacherAsync()
+        public async Task<IActionResult> ViewTeacher()
         {
             List<Teacher> teachers = await _db.Teachers.ToListAsync();
             return View(teachers);

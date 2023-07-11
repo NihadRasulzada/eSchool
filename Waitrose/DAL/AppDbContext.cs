@@ -16,6 +16,8 @@ namespace Waitrose.DAL
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<TeacherClass> TeacherClasses { get; set; }
         public DbSet<Subject> Subjects { get; set; }
-        
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Mark> Marks { get; set; }
+
     }
 }

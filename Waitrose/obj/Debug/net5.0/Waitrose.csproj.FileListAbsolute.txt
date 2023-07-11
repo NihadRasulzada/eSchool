@@ -337,3 +337,6 @@ C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\R
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Class\AsignClassTeacher.cshtml.g.cs
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Shared\_LoadSubjectPartial.cshtml.g.cs
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Shared\_LoadTeacherPartial.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\ManageExam\Index.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\ManageExam\Create.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\EntryMarks\Index.cshtml.g.cs

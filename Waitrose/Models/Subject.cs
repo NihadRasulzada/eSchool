@@ -9,5 +9,6 @@ namespace Waitrose.Models
         [Required(ErrorMessage = "Bu xana bosh ola bilmez")]
         public string Name { get; set; }
         public List<Teacher> Teachers { get; set; }
+        public List<Mark> Marks { get; set; }
     }
 }
