@@ -74,7 +74,7 @@ namespace Waitrose.Controllers
         #endregion
 
         #region Create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             ViewBag.Roles = new List<string>
             {

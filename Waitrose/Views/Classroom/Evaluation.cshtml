@@ -1,0 +1,53 @@
+﻿@model Mark
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-block">
+                        <form class="row" method="post" enctype="multipart/form-data">
+                            <div class="col-lg-6">
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <label class="form-control-label">Student</label>
+                                        <select class="form-control" name="studentId">
+                                            @foreach (Student item in ViewBag.Student)
+                                            {
+                                                <option value="@item.Id">@item.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <label class="form-control-label">Exam</label>
+                                        <select class="form-control" name="examId">
+                                            @foreach (Exam item in ViewBag.Exam)
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label asp-for="StudentMark" class="form-control-label">StudentMark</label>
+                                    <div class="input-group">
+                                        <input asp-for=StudentMark class="form-control" placeholder="StudentMark">
+                                    </div>
+                                    <span asp-validation-for="StudentMark" style="color:red;margin-left:12px"></span>
+                                </div>
+                                <div class="col-md-12" style="margin-top:10px">
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

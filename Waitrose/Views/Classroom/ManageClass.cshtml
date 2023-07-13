@@ -48,10 +48,24 @@
                                                     <!-- Example single danger button -->
                                                     <div class="btn-group">
                                                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Action
+                                                            Evaluation
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a asp-action="ClassProfile" asp-route-id="@item.Id" class="dropdown-item">View Class</a>
+                                                            @foreach (TeacherClass teacherClass in item.TeacherClasses)
+                                                            {
+                                                                <a asp-action="Evaluation" asp-route-classId="@item.Id" asp-route-subjectId="@teacherClass.Teacher.SubjectId" class="dropdown-item">@teacherClass.Teacher.Subject.Name</a>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Subjects
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            @foreach (TeacherClass teacherClass in item.TeacherClasses)
+                                                            {
+                                                                <a asp-action="ClassProfile" asp-route-classId="@item.Id" asp-route-subjectId="@teacherClass.Teacher.SubjectId" class="dropdown-item">@teacherClass.Teacher.Subject.Name</a>
+                                                            }
                                                         </div>
                                                     </div>
                                                 </td>

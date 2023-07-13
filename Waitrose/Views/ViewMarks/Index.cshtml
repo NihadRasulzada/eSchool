@@ -1,0 +1,127 @@
+﻿@model List<Mark>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row dashboard-header">
+            <div class="col-lg-4 col-md-6">
+                <div class="card dashboard-product">
+                    <span>Select Class</span>
+                    <div class="form-group">
+                        <select class="form-control" name="classId" id="classId">
+                            <option>NULL</option>
+                            @foreach (Class item in ViewBag.Classes)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card dashboard-product">
+                    <span>Select Exam</span>
+                    <div class="form-group">
+                        <select class="form-control" name="examId" id="examId">
+                            <option>NULL</option>
+                            @foreach (Exam item in ViewBag.Exams)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card dashboard-product">
+                    <span>Select Subject</span>
+                    <div class="form-group">
+                        <select class="form-control" name="subjectId" id="subjectId">
+                            <option>NULL</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="form-group">
+                    <button id="find" class="btn btn-info">Find</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" style="margin-top:30px" id="studentList">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>FullName</th>
+                                            <th>Class</th>
+                                            <th>Subject</th>
+                                            <th>Exam</th>
+                                            <th>Exam Mark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Mark item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Student.FullName</td>
+                                                <td>@item.Student.Class.Name</td>
+                                                <td>@item.Subject.Name</td>
+                                                <td>@item.Exam.Name</td>
+                                                <td>@item.StudentMark</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).on("change", "#classId", function () {
+            $.ajax({
+                url: "/ViewMarks/LoadSubject/",
+                type: "get",
+                data: {
+                    "classId": $("#classId").val()
+                },
+                success: function (res) {
+                    if (res == "") {
+                        $("#subjectId").empty()
+                        $("#subjectId").append("<option>NULL</option>")
+                        $("#subjectId").append(res)
+                    }
+                    else {
+                        $("#subjectId").empty()
+                        $("#subjectId").append(res)
+                    }
+
+                }
+            });
+        });
+        $(document).on("click", "#find", function () {
+            $.ajax({
+                url: "/ViewMarks/LoadStudentWithMark/",
+                type: "get",
+                data: {
+                    "classId": $("#classId").val(),
+                    "examId": $("#examId").val(),
+                    "subjectId": $("#subjectId").val()
+                },
+                success: function (res) {
+                    $("#studentList").empty()
+                    $("#studentList").append(res)
+                }
+            });
+        });
+    </script>
+}

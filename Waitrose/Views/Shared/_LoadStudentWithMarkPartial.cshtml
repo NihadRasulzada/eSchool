@@ -1,0 +1,33 @@
+﻿@model List<Mark>
+<div class="card">
+    <div class="card-block">
+        <div class="row">
+            <div class="col-sm-12 table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>FullName</th>
+                            <th>Class</th>
+                            <th>Subject</th>
+                            <th>Exam</th>
+                            <th>Exam Mark</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach (Mark item in Model)
+                            {
+
+                                <td>@item.Student.FullName</td>
+                                <td>@item.Student.Class.Name</td>
+                                <td>@item.Subject.Name</td>
+                                <td>@item.Exam.Name</td>
+                                <td>@item.StudentMark</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

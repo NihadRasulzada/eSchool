@@ -10,5 +10,6 @@ namespace Waitrose.Models
         public string Name { get; set; }
         public List<Teacher> Teachers { get; set; }
         public List<Mark> Marks { get; set; }
+        public List<Syllabus> Syllabuses { get; set; }
     }
 }

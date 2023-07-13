@@ -3,9 +3,18 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12" style="margin-top:30px">
+                <div class="button-list text-center">
+                    <a class="btn btn-primary waves-effect waves-light">Sillabus</a>
+                    <a class="btn btn-primary waves-effect waves-light">Bildiris</a>
+                    <a class="btn btn-primary waves-effect waves-light">Forum</a>
+                    <a class="btn btn-primary waves-effect waves-light">Didaktik Materiallar</a>
+                    <a asp-action="Evaluation"  class="btn btn-primary waves-effect waves-light">Evaluation</a>
+                    <a class="btn btn-primary waves-effect waves-light">Cari Muveffeqiyyet</a>
+                    <a class="btn btn-primary waves-effect waves-light">davamiyyet</a>
+                </div>
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-header-text">List of Subjects</h5>
+                        <h5 class="card-header-text">List of Studens</h5>
                     </div>
                     <div class="card-block">
                         <div class="row">
@@ -13,19 +22,30 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Teacher</th>
+                                            <th>FullName</th>
+                                            <th>Email</th>
+                                            <th>Class</th>
+                                            <th>Address</th>
+                                            <th>Gender</th>
                                             <th>Option</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (TeacherClass teacherClass in Model.TeacherClasses)
+                                        @foreach (Student item in Model.Students)
                                         {
                                             <tr>
-                                                <td>@teacherClass.Teacher.Subject.Name</td>
-                                                <td>
-                                                    @teacherClass.Teacher.FullName
-                                                </td>
+                                                <td>@item.FullName</td>
+                                                <td>@item.EmailAddress</td>
+                                                <td>@item.Class.Name</td>
+                                                <td>@item.Address</td>
+                                                @if (item.isMale)
+                                                {
+                                                    <td>Male</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Female</td>
+                                                }
                                                 <td>
                                                     <!-- Example single danger button -->
                                                     <div class="btn-group">
@@ -33,7 +53,7 @@
                                                             Action
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a asp-action="ParentProfile" asp-route-id="" class="dropdown-item">View</a>
+                                                            <a asp-action="StudentProfile" asp-route-id="@item.Id" class="dropdown-item">View</a>
                                                             <a class="dropdown-item" href="#">Send Mail</a>
                                                             <div class="dropdown-divider"></div>
                                                             <a class="dropdown-item" href="#">Banned Student</a>

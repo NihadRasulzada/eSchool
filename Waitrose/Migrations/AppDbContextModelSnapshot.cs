@@ -258,10 +258,10 @@ namespace Waitrose.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClassId")
+                    b.Property<int>("ExamId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ExamId")
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.Property<int>("StudentMark")
@@ -272,9 +272,9 @@ namespace Waitrose.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassId");
-
                     b.HasIndex("ExamId");
+
+                    b.HasIndex("StudentId");
 
                     b.HasIndex("SubjectId");
 
@@ -506,15 +506,15 @@ namespace Waitrose.Migrations
 
             modelBuilder.Entity("Waitrose.Models.Mark", b =>
                 {
-                    b.HasOne("Waitrose.Models.Class", "Class")
-                        .WithMany("Marks")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Waitrose.Models.Exam", "Exam")
                         .WithMany("Marks")
                         .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Waitrose.Models.Student", "Student")
+                        .WithMany("Marks")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -524,9 +524,9 @@ namespace Waitrose.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Class");
-
                     b.Navigation("Exam");
+
+                    b.Navigation("Student");
 
                     b.Navigation("Subject");
                 });
@@ -593,8 +593,6 @@ namespace Waitrose.Migrations
 
             modelBuilder.Entity("Waitrose.Models.Class", b =>
                 {
-                    b.Navigation("Marks");
-
                     b.Navigation("Students");
 
                     b.Navigation("TeacherClasses");
@@ -612,6 +610,8 @@ namespace Waitrose.Migrations
 
             modelBuilder.Entity("Waitrose.Models.Student", b =>
                 {
+                    b.Navigation("Marks");
+
                     b.Navigation("StudentParents");
                 });
 
