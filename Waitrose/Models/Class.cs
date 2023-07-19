@@ -11,5 +11,6 @@ namespace Waitrose.Models
         public bool isDeactive { get; set; }
         public List<Student> Students { get; set; }
         public List<TeacherClass> TeacherClasses { get; set; }
+        public List<Syllabus> Syllabuses { get; set; }
     }
 }

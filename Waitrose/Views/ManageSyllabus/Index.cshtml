@@ -1,0 +1,129 @@
+﻿@model Syllabus
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <form class="row" enctype="multipart/form-data">
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <label class="form-control-label">Select Class</label>
+                                        <select class="form-control" name="classId" id="classId">
+                                            <option value="0">NULL</option>
+                                            @foreach (Class item in ViewBag.Classes)
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <label class="form-control-label">Select Subject</label>
+                                        <select class="form-control" name="subjectId" id="subjectId">
+                                            <option value="0">NULL</option>
+                                            @* @foreach (Subject item in ViewBag.Subjects)
+                                            {
+                                            <option value="@item.Id">@item.Name</option>
+                                            }*@
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label asp-for="Document" class="form-control-label">Upload File</label>
+                                    <div class="input-group">
+                                        <input asp-for="Document" id="fileInput" class="form-control">
+                                    </div>
+                                    <span asp-validation-for="Document" style="color:red;margin-left:12px"></span>
+                                </div>
+                                <div class="col-md-12" style="margin-top:10px">
+                                    <div id="uploadButton" class="btn btn-primary">Add</div>
+                                    <div id="find" class="btn btn-primary">Find</div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <!-- Basic Table starts -->
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-sm-12 table-responsive" id="Table">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Basic Table ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).on("change", "#classId", function () {
+            $.ajax({
+                url: "/ManageSyllabus/LoadSubject/",
+                type: "get",
+                data: {
+                    "classId": $("#classId").val()
+                },
+                success: function (res) {
+                    if (res == "") {
+                        $("#subjectId").empty()
+                        $("#subjectId").append("<option value='0'>NULL</option>")
+                        $("#subjectId").append(res)
+                    }
+                    else {
+                        $("#subjectId").empty()
+                        $("#subjectId").append(res)
+                    }
+                }
+            });
+        });
+        $(document).on("click", "#find", function () {
+            $.ajax({
+                url: "/ManageSyllabus/LoadSyllabuses/",
+                type: "get",
+                data: {
+                    "classId": $("#classId").val(),
+                    "subjectId": $("#subjectId").val()
+                },
+                success: function (res) {
+                    $("#Table").empty()
+                    $("#Table").append(res)
+                }
+            });
+        });
+        $(document).ready(function () {
+            $("#uploadButton").on("click", function () {
+                var fileInput = $("#fileInput")[0];
+                var file = fileInput.files[0];
+
+                var formData = new FormData();
+                formData.append("file", file);
+                console.log(formData)
+                $.ajax({
+                    url: "/ManageSyllabus/Upload",
+                    type: "POST",
+                    data: {
+                        "file": formData,
+                        "classId": $("#classId").val(),
+                        "subjectId": $("#subjectId").val()
+                    },
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        console.log(data);
+                    },
+                });
+            });
+        });
+    </script>
+}

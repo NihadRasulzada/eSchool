@@ -49,6 +49,7 @@ namespace Waitrose.Controllers
         }
         #endregion
 
+        #region LoadStudentWithMark
         public async Task<IActionResult> LoadStudentWithMark(int classId, int examId, int subjectId)
         {
             List<Mark> marks = await _db.Marks
@@ -59,7 +60,8 @@ namespace Waitrose.Controllers
                 .Where(x => x.ExamId == examId && x.SubjectId == subjectId && x.Student.ClassId == classId)
                 .ToListAsync();
             return PartialView("_LoadStudentWithMarkPartial", marks);
-        }
+        } 
+        #endregion
 
 
     }

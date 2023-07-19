@@ -944,6 +944,38 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\icon\themify-icons\themify-icons.css))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\10b0ed39-bae9-4cb2-b1f3-25151499aef7MÜƏLLİMLƏRİN İŞƏ QƏBULU ÜZRƏ MÜSABİQƏ.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>Waitrose</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Waitrose</BasePath>
+      <RelativePath>assets\images\10b0ed39-bae9-4cb2-b1f3-25151499aef7MÜƏLLİMLƏRİN İŞƏ QƏBULU ÜZRƏ MÜSABİQƏ.pdf</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\10b0ed39-bae9-4cb2-b1f3-25151499aef7MÜƏLLİMLƏRİN İŞƏ QƏBULU ÜZRƏ MÜSABİQƏ.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\17444e18-9929-472c-9e19-e173c80aa09eMÜƏLLİMLƏRİN İŞƏ QƏBULU ÜZRƏ MÜSABİQƏ.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>Waitrose</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Waitrose</BasePath>
+      <RelativePath>assets\images\17444e18-9929-472c-9e19-e173c80aa09eMÜƏLLİMLƏRİN İŞƏ QƏBULU ÜZRƏ MÜSABİQƏ.pdf</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\17444e18-9929-472c-9e19-e173c80aa09eMÜƏLLİMLƏRİN İŞƏ QƏBULU ÜZRƏ MÜSABİQƏ.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\2e18e2c3-9b23-4d09-9069-963deaab66e4single-small.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Waitrose</SourceId>

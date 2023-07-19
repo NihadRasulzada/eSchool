@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.VisualBasic;
 using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Waitrose.Helper
@@ -17,7 +19,7 @@ namespace Waitrose.Helper
         }
         public static async Task<string> SaveFileAsync(this IFormFile file, string folder)
         {
-            string filename = Guid.NewGuid().ToString() + file.FileName;
+            string filename = file.FileName;
             string path = Path.Combine(folder, filename);
             using (FileStream fileStream = new FileStream(path, FileMode.Create))
             {

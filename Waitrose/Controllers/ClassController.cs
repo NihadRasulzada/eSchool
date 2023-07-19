@@ -15,11 +15,14 @@ namespace Waitrose.Controllers
         {
             _db = db;
         }
+
+        #region Index
         public async Task<IActionResult> Index()
         {
             List<Class> classes = await _db.Classes.ToListAsync();
             return View(classes);
         }
+        #endregion
 
         #region Create
         public IActionResult Create()
@@ -61,6 +64,8 @@ namespace Waitrose.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+
+        #region AsignClassTeacher
         public async Task<IActionResult> AsignClassTeacher()
         {
             ViewBag.Classes = await _db.Classes.ToListAsync();
@@ -81,7 +86,9 @@ namespace Waitrose.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region LoadSubject
         public async Task<IActionResult> LoadSubject(int classId)
         {
             List<int> ids = new List<int>();
@@ -98,7 +105,7 @@ namespace Waitrose.Controllers
                 isBool = false;
                 foreach (int Id in ids)
                 {
-                    if(item.Id == Id)
+                    if (item.Id == Id)
                     {
                         isBool = true;
                     }
@@ -108,13 +115,17 @@ namespace Waitrose.Controllers
                     subjects.Add(item);
                 }
             }
-            return PartialView("_LoadSubjectPartial",subjects );
+            return PartialView("_LoadSubjectPartial", subjects);
         }
+        #endregion
+
+        #region LoadTeacher
         public async Task<IActionResult> LoadTeacher(int subjectId)
         {
             List<Teacher> teachers = await _db.Teachers.Where(x => x.SubjectId == subjectId).ToListAsync();
             return PartialView("_LoadTeacherPartial", teachers);
-        }
+        } 
+        #endregion
 
     }
 }

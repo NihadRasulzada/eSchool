@@ -343,3 +343,5 @@ C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\R
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\ViewMarks\AddMarks.cshtml.g.cs
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\ViewMarks\Index.cshtml.g.cs
 C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Shared\_LoadStudentWithMarkPartial.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\ManageSyllabus\Index.cshtml.g.cs
+C:\Users\nihad\Documents\Me\MyProjects\Back\Waitrose\Waitrose\obj\Debug\net5.0\Razor\Views\Shared\_LoadSyllabusesPartial.cshtml.g.cs

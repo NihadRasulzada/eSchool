@@ -393,6 +393,34 @@ namespace Waitrose.Migrations
                     b.ToTable("Subjects");
                 });
 
+            modelBuilder.Entity("Waitrose.Models.Syllabus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Downloaded")
+                        .HasColumnType("int");
+
+                    b.Property<string>("File")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("Syllabuses");
+                });
+
             modelBuilder.Entity("Waitrose.Models.Teacher", b =>
                 {
                     b.Property<int>("Id")
@@ -561,6 +589,25 @@ namespace Waitrose.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("Waitrose.Models.Syllabus", b =>
+                {
+                    b.HasOne("Waitrose.Models.Class", "Class")
+                        .WithMany("Syllabuses")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Waitrose.Models.Subject", "Subject")
+                        .WithMany("Syllabuses")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Waitrose.Models.Teacher", b =>
                 {
                     b.HasOne("Waitrose.Models.Subject", "Subject")
@@ -595,6 +642,8 @@ namespace Waitrose.Migrations
                 {
                     b.Navigation("Students");
 
+                    b.Navigation("Syllabuses");
+
                     b.Navigation("TeacherClasses");
                 });
 
@@ -618,6 +667,8 @@ namespace Waitrose.Migrations
             modelBuilder.Entity("Waitrose.Models.Subject", b =>
                 {
                     b.Navigation("Marks");
+
+                    b.Navigation("Syllabuses");
 
                     b.Navigation("Teachers");
                 });

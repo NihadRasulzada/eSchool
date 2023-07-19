@@ -1,0 +1,22 @@
+﻿@model List<Syllabus>
+<table class="table">
+    <thead>
+        <tr>
+            <th>File</th>
+            <th>Downloaded</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Syllabus item in Model)
+        {
+            <tr>
+                <td>@item.File</td>
+                <td>@item.Downloaded</td>
+                <td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
